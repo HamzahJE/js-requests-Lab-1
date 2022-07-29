@@ -2,6 +2,9 @@
 //THE TEST SERVER IS RUNNING ON LOCALHOST:3000//
 ////////////////////////////////////////////////
 
+
+
+
 // PROBLEM 1
 /*
     In the index.html file in this folder there is a button with an id of 'say-hello-button'!
@@ -10,8 +13,8 @@
 */
 
 // CODE HERE
-const sayHelloButton=document.querySelector(`#say-hello-button`)
-
+const sayHelloButton=document.querySelector(`#say-hello-button`);
+const repeatMyParamBtn= document.querySelector('#repeat-button')
 
 // PROBLEM 2
 /*
@@ -21,8 +24,11 @@ const sayHelloButton=document.querySelector(`#say-hello-button`)
 */
 
 // CODE HERE
-const changeCo
-
+const changeBackgroundColor= ()=>{
+    sayHelloButton.style.backgroundColor='black'
+    sayHelloButton.style.color='white'
+}
+sayHelloButton.addEventListener('mouseover',changeBackgroundColor)
 // PROBLEM 3
 /*
     Now you can see that the button colors change, but they do not change back when we take the mouse off of the button.
@@ -33,7 +39,11 @@ const changeCo
 */
 
 // CODE HERE
-
+const changeBackgroundColorBack = ()=>{
+    sayHelloButton.style.backgroundColor='#EFEFEF'
+    sayHelloButton.style.color='black'
+}
+sayHelloButton.addEventListener('mouseover',changeBackgroundColorBack)
 
 // PROBLEM 4
 /*
@@ -54,6 +64,7 @@ const sayHello = () => {
 // DO NOT EDIT FUNCTION
 
 // CODE HERE
+sayHelloButton.addEventListener('click',sayHello)
 
 
 // PROBLEM 5 
@@ -69,6 +80,8 @@ const sayHello = () => {
 
 const ohMy = () => {
     // YOUR CODE HERE
+    axios.get('http://localhost:3000/animals')
+    .then( res =>console.log(res.data))
 }
 
 document.getElementById('animals-button').addEventListener('click', ohMy)
@@ -89,8 +102,14 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
 
 const repeatMyParam = () => {
     //YOUR CODE HERE
+    axios.get('http://localhost:3000/repeat/fish')
+    .then(res => {
+        console.log(res.data);
+        const repeatText=document.querySelector('#repeat-text')
+        repeatText.textContent=res.data
+    })
 }
-
+repeatMyParamBtn.addEventListener('click',repeatMyParam)
 // PROBLEM 7
 /*
     Now that we have the response data, let's add it to our web page! 
@@ -112,6 +131,13 @@ const repeatMyParam = () => {
 */
 
 // CODE HERE
+let queryTestBtn =document.getElementById('query-button')
+
+const queryTest = () =>{
+    axios.get('http://localhost:3000/query-test?hello')
+    .then(res => console.log(res.data))
+}
+queryTestBtn.addEventListener('click',queryTest)
 
 
 
